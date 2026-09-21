@@ -1,16 +1,18 @@
 export class AppError extends Error {
     constructor(
         message: string,
-        public statusCode: number
+        public statusCode: number,
+        public isOperational: boolean = true
     ) {
         super(message);
+        Object.setPrototypeOf(this, new.target.prototype);
     }
 }
 
 
 export class ValidationError extends AppError {
     constructor(message: string) {
-        super(message, 400);
+        super(message, 409);
     }
 }
 
