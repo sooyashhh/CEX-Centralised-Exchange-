@@ -1,6 +1,8 @@
 import app from "./app";
 import { config } from "./shared/config";
+import { logger } from "./shared/logger";
 
 app.listen(config.PORT, () => {
-    console.log("Server is Running")
+    logger.info("Server is running");
 })
+

@@ -5,7 +5,11 @@ const envSchema = z.object({
     JWT_SECRET: z.string().min(1),
     DATABASE_URL: z.string().url().startsWith("postgresql://"),
     PORT: z.coerce.number().default(3000),
+    LOG_LEVEL: z.enum(["debug", "info", "warn", "error"]).default("info"),
+    NODE_ENV: z.enum(["development", "production"]).default("development"),
 })
+
+
 
 let config: z.infer<typeof envSchema>;
 
@@ -19,5 +23,8 @@ try {
         process.exit(1);
     }
 }
+
+
+
 
 export { config };
